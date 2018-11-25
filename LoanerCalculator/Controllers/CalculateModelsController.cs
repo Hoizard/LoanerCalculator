@@ -50,7 +50,9 @@ namespace LoanerCalculator.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                ViewBag.CalculateTemp = ComputeMortgage.ComputeMonthlyPayment(calculateModel.PrincipleAmount,calculateModel.LoanDuration,calculateModel.InterestRate);
+                ViewBag.Msg = $"The Cost is is {ViewBag.CalculateTemp}";
+                calculateModel.Results = ComputeMortgage.ComputeMonthlyPayment(calculateModel.PrincipleAmount, calculateModel.LoanDuration, calculateModel.InterestRate);
 
                 db.CalculateModels.Add(calculateModel);
                 db.SaveChanges();
